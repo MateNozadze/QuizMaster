@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>create quiz</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<main layout:fragment="content">
+    <h2>create quiz</h2>
+    <form th:action="@{/setup}" th:object="${quizSetup}" method="post">
+        <div class="mb-3">
+            <label>quiz name:</label>
+            <input type="text" th:field="*{quizName}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label>quiz count:</label>
+            <select th:field="*{questionCount}" class="form-select" required>
+                <option th:each="i : ${#numbers.sequence(1,40)}" th:value="${i}" th:text="${i}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">create</button>
+    </form>
+</main>
+</body>
+</html>

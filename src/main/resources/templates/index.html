@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>index</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<main layout:fragment="content">
+    <h1>Quiz Webapp</h1>
+    <p>Create quiz or Take quiz</p>
+    <div class="quiz-box-container">
+        <div class="quiz-box">
+            <a th:href="@{/setup}" class="btn btn-primary btn-centered">Create Quiz</a>
+        </div>
+        <div class="quiz-box">
+            <a th:href="@{/quizzes}" class="btn btn-primary btn-centered">All Quizzes</a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

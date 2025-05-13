@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer" class="py-3 border-top bg-light">
+    <div class="container d-flex flex-wrap justify-content-center align-items-center">
+        <p class="mb-0 text-muted">Copyright ©
+            <span th:text="${#dates.year(#dates.createNow())}"></span> QuizMaster
+        </p>
+    </div>
+</footer>
+</body>
+</html>

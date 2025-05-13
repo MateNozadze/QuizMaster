@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>add question</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<main layout:fragment="content">
+    <h2>add question (<span th:text="${remainingQuestions}"></span> remaining)</h2>
+
+    <form th:action="@{/addQuestion}" th:object="${question}" method="post">
+
+        <div class="mb-3">
+            <label class="form-label">question:</label>
+            <input type="text" class="form-control" th:field="*{text}" placeholder="enter question" required />
+            <span class="text-danger" th:errors="*{text}"></span>
+        </div>
+
+        <div th:each="i : ${#numbers.sequence(0,2)}" class="mb-2">
+            <label class="form-label">answer [[${i + 1}]]:</label>
+            <input type="text" class="form-control"
+                   th:field="*{options[__${i}__]}" placeholder="enter answers" required />
+            <span class="text-danger" th:errors="*{options[__${i}__]}"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">answer index:</label>
+            <select class="form-select" th:field="*{correctAnswersInput}" required>
+                <option value="" disabled selected>choose answers</option>
+                <option value="0">answer 1</option>
+                <option value="1">answer 2</option>
+                <option value="2">answer 3</option>
+            </select>
+            <span class="text-danger" th:errors="*{correctAnswersInput}"></span>
+            <small class="form-text text-muted">choose one correct answer (0, 1, or 2).</small>
+        </div>
+
+        <button type="submit" class="btn btn-success" th:text="${remainingQuestions == 1} ? 'end' : 'next'"></button>
+        <a class="btn btn-secondary" th:href="@{/setup}">back</a>
+    </form>
+</main>
+</body>
+</html>
