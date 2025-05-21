@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class QuizController {
@@ -43,17 +46,38 @@ public class QuizController {
     }
     //კითხვების შენახვა
     @PostMapping("/addQuestion")
-    public String saveQuestion(@ModelAttribute Question question, RedirectAttributes redirectAttributes) {
+    public String saveQuestion(@ModelAttribute Question question,
+                               @RequestParam("correctAnswersInput") String correctAnswersInput,
+                               RedirectAttributes redirectAttributes) {
         if (currentQuiz != null) {
-            question.setQuiz(currentQuiz);//ვაკავშირებს მიმდინარე ქვიზს
-            currentQuiz.getQuestions().add(question);//ვამატებთ სიაში
-            // თუ ჯერ კიდევ დარჩენილია დასამატებელი კითხვები, ვაბრუნებთ უკან დამატების გვერდზე
+            // გარდაქმენი correctAnswersInput -> List<Integer>
+            if (correctAnswersInput != null && !correctAnswersInput.isEmpty()) {
+                try {
+                    List<Integer> correctAnswers = Arrays.stream(correctAnswersInput.split(","))
+                            .map(String::trim)
+                            .map(Integer::parseInt)
+                            .collect(Collectors.toList());
+                    question.setCorrectAnswers(correctAnswers);
+                } catch (NumberFormatException e) {
+                    redirectAttributes.addFlashAttribute("error", "Invalid correct answer format");
+                    redirectAttributes.addFlashAttribute("quizName", currentQuiz.getName());
+                    redirectAttributes.addFlashAttribute("questionCount", currentQuiz.getQuestionCount());
+                    return "redirect:/addQuestion";
+                }
+            } else {
+                question.setCorrectAnswers(new ArrayList<>()); // თუ ცარიელია, ცარიელი სია
+            }
+
+            question.setQuiz(currentQuiz); // ვაკავშირებთ მიმდინარე ქვიზს
+            currentQuiz.getQuestions().add(question); // ვამატებთ სიაში
+
+            // თუ ჯერ კიდევ დარჩენილია დასამატებელი კითხვები, ვაბრუნებთ უკან
             if (currentQuiz.getQuestions().size() < currentQuiz.getQuestionCount()) {
                 redirectAttributes.addFlashAttribute("quizName", currentQuiz.getName());
                 redirectAttributes.addFlashAttribute("questionCount", currentQuiz.getQuestionCount());
                 return "redirect:/addQuestion";
             } else {
-                //ყველა კითხვის დამატების შემდეგ  გადავდივართ ქვიზების გვერდზე
+                // ყველა კითხვის დამატების შემდეგ
                 for (Question q : currentQuiz.getQuestions()) {
                     q.setQuiz(currentQuiz);
                 }
@@ -62,7 +86,7 @@ public class QuizController {
                 return "redirect:/quizzes";
             }
         }
-        return "redirect:/setup";// უკან დაბრუნება
+        return "redirect:/setup";
     }
     // ყველა ქვიზის ჩვენება
     @GetMapping("/quizzes")

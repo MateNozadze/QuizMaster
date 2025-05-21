@@ -30,7 +30,7 @@ public class Question {
     @Column(name = "option")
     private List<String> options = new ArrayList<>();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "question_correct_answers", joinColumns = @JoinColumn(name = "question_id"))
     @Column(name = "correct_answer")
     private List<Integer> correctAnswers = new ArrayList<>();

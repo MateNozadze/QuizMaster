@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-<header th:fragment="header" class="quiz-header py-3">
-    <div class="container text-center">
-        <a class="text-decoration-none" th:href="@{/}">
-            <h1 class="m-0 text-primary">QuizMaster</h1>
-        </a>
-        <p class="m-0 text-muted">Test your knowledge</p>
+<header th:fragment="header" class="app-header">
+    <div class="columned">
+        <div class="header-container">
+            <a class="brand-link" th:href="@{/}">
+                <h1 class="brand-title">QuizMaster</h1>
+            </a>
+            <p class="brand-tagline">Test your knowledge</p>
+        </div>
+        <div class="end_p">
+            <div th:insert="~{fragment/navbar :: navbar}"></div>
+        </div>
     </div>
 </header>
 </body>

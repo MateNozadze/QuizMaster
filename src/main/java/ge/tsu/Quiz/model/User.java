@@ -3,13 +3,16 @@ package ge.tsu.Quiz.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
 @Getter
 @Setter
+@Table(name = "users")
 public class User {
 
     @Id
@@ -19,6 +22,9 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
+
     @Column(nullable = false)
     private String password;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Quiz> quizzes = new ArrayList<>();
 }

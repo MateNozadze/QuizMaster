@@ -1,24 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title>all quizzes</title>
+    <title>All Quizzes</title>
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
-
 </head>
 <body>
 
-<main layout:fragment="content">
-    <h2>all quizzes</h2>
-    <ul class="list-group">
+<main layout:fragment="content" class="content-wrapper">
+    <h2>All Quizzes</h2>
+    <ul class="list-group quiz-list">
         <li class="list-group-item" th:each="quiz : ${quizzes}">
             <strong th:text="${quiz.name}"></strong> – question count:
             <span th:text="${quiz.questionCount}"></span>
         </li>
     </ul>
-    <a class="btn btn-secondary" th:href="@{/home}">back</a>
+    <a class="btn btn-secondary" th:href="@{/home}">Back</a>
 </main>
 </body>
 </html>
