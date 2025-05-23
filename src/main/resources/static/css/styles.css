@@ -29,15 +29,15 @@ body {
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center; /* ვერტიკალური გასწორება */
-    justify-content: space-between; /* QuizMaster მარცხნივ, navbar მარჯვნივ */
+    align-items: center;
+    justify-content: space-between;
     padding: 0 10px;
 }
 
 .header-container {
     display: flex;
     align-items: center;
-    gap: 30px; /* 30px ინტერვალი QuizMaster-სა და Test your knowledge-ს შორის */
+    gap: 30px;
 }
 
 .end_p {
@@ -74,13 +74,13 @@ body {
 }
 
 .dropdown-toggle {
-    font-size: 0.85rem; /* კომპაქტური ღილაკი */
+    font-size: 0.85rem;
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
 }
 
 .dropdown-menu {
-    min-width: 120px; /* კომპაქტური dropdown */
+    min-width: 120px;
     font-size: 0.9rem;
 }
 
@@ -92,7 +92,7 @@ body {
     transition: all 0.3s ease;
     font-weight: 500;
     letter-spacing: 0.5px;
-    text-transform: none; /* uppercase-ის მოხსნა */
+    text-transform: none;
 }
 
 .btn-primary.custom-btn {
@@ -189,6 +189,10 @@ h2 {
     font-size: 1rem;
 }
 
+.form-select#questionCount {
+    width: 100px; /* საშუალებას აძლევს რიცხვებს გამოჩნდეს */
+}
+
 .error-message {
     font-size: 0.85rem;
     margin-top: 0.25rem;
@@ -252,14 +256,26 @@ h2 {
     color: white;
 }
 
+.language-switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.language-switch-container .form-select {
+    min-width: 120px;
+    font-size: 0.9rem;
+    padding: 0.4rem;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .columned {
-        flex-wrap: wrap; /* თუ სივრცე არაა, dropdown ქვემოთ */
+        flex-wrap: wrap;
         padding: 0 5px;
     }
     .header-container {
-        gap: 15px; /* ნაკლები ინტერვალი მობილურზე */
+        gap: 15px;
     }
     .brand-title {
         font-size: 1.4rem;
@@ -270,5 +286,8 @@ h2 {
     .dropdown-toggle {
         font-size: 0.8rem;
         padding: 0.3rem 0.6rem;
+    }
+    .form-select#questionCount {
+        width: 80px; /* ოდნავ პატარა მობილურზე */
     }
 }

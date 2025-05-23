@@ -12,18 +12,18 @@
 
 <main layout:fragment="content" class="content-wrapper">
 
-    <h2>Add Question (<span th:text="${remainingQuestions}"></span> remaining)</h2>
+    <h2><span th:text="#{add.question}">Add Question</span>(<span th:text="#{remaining}">remaining</span> - <span th:text="${remainingQuestions}">  </span>)</h2>
 
     <form th:action="@{/addQuestion}" th:object="${question}" method="post" class="form-container">
 
         <div class="form-group mb-3">
-            <label class="form-label">Question:</label>
+            <label class="form-label" th:text="#{question}">Question:</label>
             <input type="text" class="form-control" th:field="*{text}" placeholder="Enter question" required />
             <span class="error-message text-danger" th:errors="*{text}"></span>
         </div>
 
         <div th:each="i : ${#numbers.sequence(0,2)}" class="form-group mb-2">
-            <label class="form-label">Answer [[${i + 1}]]:</label>
+            <label class="form-label"><span th:text="#{answer}">Answer</span> [[${i + 1}]]:</label>
             <input type="text" class="form-control"
                    th:field="*{options[__${i}__]}" placeholder="Enter answer" required />
             <span class="error-message text-danger" th:errors="*{options[__${i}__]}"></span>
@@ -32,17 +32,17 @@
         <div class="form-group mb-3">
             <label class="form-label">Correct Answer Index:</label>
             <select class="form-select" th:field="*{correctAnswersInput}" required>
-                <option value="" disabled selected>Choose answer</option>
-                <option value="0">Answer 1</option>
-                <option value="1">Answer 2</option>
-                <option value="2">Answer 3</option>
+                <option value="" disabled selected><span th:text="#{choose.answer}">Choose answer</span></option>
+                <option value="0"><span th:text="#{answer}">Answer</span> 1</option>
+                <option value="1"><span th:text="#{answer}">Answer</span> 2</option>
+                <option value="2"><span th:text="#{answer}">Answer</span> 3</option>
             </select>
             <span class="error-message text-danger" th:errors="*{correctAnswersInput}"></span>
-            <small class="form-text text-muted">Choose one correct answer (0, 1, or 2).</small>
+            <small class="form-text text-muted" th:text="#{choose.one}">Choose one correct answer (0, 1, or 2).</small>
         </div>
 
         <button type="submit" class="btn btn-success" th:text="${remainingQuestions == 1} ? 'End' : 'Next'"></button>
-        <a class="btn btn-secondary" th:href="@{/setup}">Back</a>
+        <a class="btn btn-secondary" th:href="@{/setup}" th:text="#{back}">Back</a>
     </form>
 </main>
 </body>

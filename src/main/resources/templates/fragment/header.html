@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
+
 <header th:fragment="header" class="app-header">
     <div class="columned">
         <div class="header-container">
             <a class="brand-link" th:href="@{/}">
-                <h1 class="brand-title">QuizMaster</h1>
+                <h1 th:text="#{app.name}" class="brand-title">App Name</h1>
             </a>
-            <p class="brand-tagline">Test your knowledge</p>
+            <p th:text="#{app.description}" class="brand-tagline">App Description</p>
         </div>
-        <div class="end_p">
-            <div th:insert="~{fragment/navbar :: navbar}"></div>
+
+        <div class="language-switch-container">
+            <div class="end_p">
+                <div th:insert="~{fragment/navbar :: navbar}"></div>
+            </div>
+            <form method="get" th:action="@{/}">
+                <select name="lang" class="form-select" onchange="this.form.submit()">
+                    <option disabled selected th:text="#{language.switch}">Change Language</option>
+                    <option value="ka" th:selected="${#locale.language == 'ka'}">ქართული</option>
+                    <option value="en" th:selected="${#locale.language == 'en'}">English</option>
+                    <option value="fr" th:selected="${#locale.language == 'fr'}">france</option>
+                </select>
+            </form>
         </div>
     </div>
+
 </header>
+<script>
+    const select = document.querySelector("#change-language");
+    select.addEventListener("change", (event) => {
+        window.location.href = window.location.pathname + '?lang=' + event.target.value;
+    });
+</script>
 </body>
 </html>

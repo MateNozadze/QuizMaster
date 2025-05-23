@@ -1,9 +1,13 @@
 package ge.tsu.Quiz.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class HomeController {
@@ -18,6 +22,8 @@ public class HomeController {
         }
         return "redirect:/login";
     }
+
+
     // ავტორიზაციის შემდეგ გადადის მთავარ გვერდზე (index)
     @GetMapping("/home")
     public String homePage() {

@@ -3,8 +3,9 @@
 <body>
 <footer th:fragment="footer" class="footer padding-top border-top bg-footer">
     <div class="footer-wrapper">
-        <p class="footer-text">Copyright ©
-            <span th:text="${#dates.year(#dates.createNow())}"></span> QuizMaster
+        <p class="footer-text">Copyright © 2025 QuizMaster.
+            <span th:text="#{current.time}">Current Time </span> :
+            <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd HH:mm:ss')}"></span>
         </p>
     </div>
 </footer>

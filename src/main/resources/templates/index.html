@@ -11,14 +11,14 @@
 <body>
 
 <main layout:fragment="content" class="content-wrapper">
-    <h1>Quiz Webapp</h1>
-    <p>Create quiz or take quiz</p>
+    <h1 th:text="#{app.name}">App Name</h1>
+    <p th:text="#{choice}">choice</p>
     <div class="quiz-container">
         <div class="quiz-action">
-            <a th:href="@{/setup}" class="btn btn-primary btn-center">Create Quiz</a>
+            <a th:href="@{/setup}" class="btn btn-primary btn-center" th:text="#{create}">Create</a>
         </div>
         <div class="quiz-action">
-            <a th:href="@{/quizzes}" class="btn btn-primary btn-center">All Quizzes</a>
+            <a th:href="@{/quizzes}" class="btn btn-primary btn-center"th:text="#{all.quizzes}">All Quizzes</a>
         </div>
     </div>
 </main>
