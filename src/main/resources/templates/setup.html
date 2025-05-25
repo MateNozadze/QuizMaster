@@ -16,8 +16,12 @@
         <div class="form-group mb-3">
             <label for="questionCount" class="form-label" th:text="#{question.count}">Question Count:</label>
             <select th:field="*{questionCount}" class="form-select" id="questionCount" required>
-                <option th:each="i : ${#numbers.sequence(1,40)}" th:value="${i}" th:text="${i}"></option>
+                <option th:each="i : ${#numbers.sequence(1,maxQuestions)}" th:value="${i}" th:text="${i}"></option>
             </select>
+            <div th:if="${enableDescription}">
+                <label>Description:</label>
+                <input type="text" th:field="*{extraOption}"/>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary" th:text="#{create}">Create</button>
     </form>

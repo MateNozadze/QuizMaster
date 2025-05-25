@@ -15,11 +15,12 @@ import java.util.List;
 @Data
 @Getter
 @Setter
+@Table(name = "quiz")
 public class Quiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long quizId;
 
     @Column(nullable = false)
     private String name;
@@ -27,10 +28,15 @@ public class Quiz {
     @Column(nullable = false)
     private int questionCount;
 
+    @Column(name = "description")
+    private String description;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions = new ArrayList<>();
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

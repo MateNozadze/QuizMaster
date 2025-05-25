@@ -24,7 +24,7 @@ public class QuizService {
         return quizRepository.findAll();
     }
 
-    public Optional<Quiz> getQuiz(Long id) {
+    public Optional<Quiz> getQuizById(Long id) { // გადარქმევა getQuiz → getQuizById
         return quizRepository.findById(id);
     }
 }

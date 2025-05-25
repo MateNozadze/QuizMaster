@@ -43,6 +43,9 @@
 
         <button type="submit" class="btn btn-success" th:text="${remainingQuestions == 1} ? 'End' : 'Next'"></button>
         <a class="btn btn-secondary" th:href="@{/setup}" th:text="#{back}">Back</a>
+        <div th:if="${enableDescription}">
+            <p>Description: <span th:text="${extraOption} ?: 'No Description'"></span></p>
+        </div>
     </form>
 </main>
 </body>

@@ -6,4 +6,5 @@ import lombok.Data;
 public class QuizSetupForm {
     private String quizName;
     private int questionCount;
+    private String extraOption; // მაგ., აღწერა ან კატეგორია
 }
