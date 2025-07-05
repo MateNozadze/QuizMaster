@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <title>Quiz Result</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<main layout:fragment="content" class="content-wrapper quiz-result">
+    <h2 th:text="'Result for ' + ${quiz.name}">Result</h2>
+    <p>Your score: <span th:text="${score}">0</span> / <span th:text="${total}">0</span></p>
+    <a class="btn btn-primary custom-btn" th:href="@{/quizzes}">Back to quizzes list</a>
+</main>
+</body>
+</html>

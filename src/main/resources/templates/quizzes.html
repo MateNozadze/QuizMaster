@@ -14,6 +14,9 @@
             <span th:if="${enableDescription}">
                 – description: <span th:text="${quiz.description} ?: 'No Description'">No Description</span>
             </span>
+            <div>
+                <a class="btn btn-primary" th:href="@{'/quiz/start/' + ${quiz.quizId}}">Start Quiz</a>
+            </div>
         </li>
     </ul>
     <a class="btn btn-secondary" th:href="@{/home}">Back</a>

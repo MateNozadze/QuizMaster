@@ -5,11 +5,12 @@ import ge.tsu.Quiz.repository.QuizRepository;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
+
 
 @Data
 @Service
 public class QuizService {
+
     private final QuizRepository quizRepository;
 
     public QuizService(QuizRepository quizRepository) {
@@ -24,7 +25,8 @@ public class QuizService {
         return quizRepository.findAll();
     }
 
-    public Optional<Quiz> getQuizById(Long id) { // გადარქმევა getQuiz → getQuizById
-        return quizRepository.findById(id);
+    public Quiz getQuizById(Long quizId) {
+        return quizRepository.findById(quizId).orElse(null);
     }
+
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <title th:replace="${quiz.name} + ' - Quiz Question'">Quiz</title>
+</head>
+
+<body>
+<main layout:fragment="content" class="content-wrapper">
+    <h2 th:text="${quiz.name}">Quiz Name</h2>
+    <h4>Question <span th:text="${questionIndex + 1}">1</span> of <span th:text="${#lists.size(quiz.questions)}">X</span></h4>
+
+    <form class="quiz-form" th:action="@{/quiz/start/{quizId}(quizId=${quiz.quizId})}" method="get" th:if="${!isLastQuestion}">
+        <input type="hidden" name="q" th:value="${questionIndex + 1}"/>
+        <p th:text="${question.text}">Question text</p>
+
+        <div th:each="opt, iter : ${question.options}">
+            <label>
+                <input type="radio" th:name="'q' + ${question.questionId}" th:value="${iter.index}" required/>
+                <span th:text="${opt}">Option</span>
+            </label><br/>
+        </div>
+
+        <button type="submit">Next</button>
+    </form>
+
+    <form class="quiz-form" th:action="@{/quiz/submit}" method="post" th:if="${isLastQuestion}">
+        <input type="hidden" name="quizId" th:value="${quiz.quizId}"/>
+        <p th:text="${question.text}">Question text</p>
+
+        <div th:each="opt, iter : ${question.options}">
+            <label>
+                <input type="radio" th:name="'q' + ${question.questionId}" th:value="${iter.index}" required/>
+                <span th:text="${opt}">Option</span>
+            </label><br/>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</main>
+</body>
+</html>

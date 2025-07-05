@@ -1,31 +1,70 @@
 spring:
+  application:
+    name: QuizMasterApp
   profiles:
     active: dev
+  logging:
+    level:
+      root: warn
+      ge.tsu.Quiz: info
+
 ---
+
 spring:
   profiles: dev
+  logging:
+    config: classpath:logback-dev.xml
+    level:
+      org.springframework: DEBUG
+      ge.tsu.Quiz: DEBUG
+
 quiz:
   app:
     app-name: QuizMaster-Dev
     max-questions: 50
     feature-enabled: true
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+      show-components: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+---
+
+spring:
+  profiles: prod
+  logging:
+    config: classpath:logback-prod.xml
+    level:
+      org.springframework: INFO
+      ge.tsu.Quiz: INFO
+
+quiz:
+  app:
+    app-name: QuizMaster-Prod
+    max-questions: 20
+    feature-enabled: false
+
 server:
   port: 8443
-logging:
-  level:
-    org.springframework: DEBUG
-    ge.tsu.Quiz: DEBUG
----
-#spring:
-#  profiles: prod
-#quiz:
-#  app:
-#    app-name: QuizMaster-Prod
-#    max-questions: 20
-#    feature-enabled: false
-#server:
-#  port: 8443
-#logging:
-#  level:
-#    org.springframework: INFO
-#    ge.tsu.Quiz: INFO
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true

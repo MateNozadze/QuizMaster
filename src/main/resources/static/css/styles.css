@@ -278,6 +278,67 @@ h2 {
     padding: 0.4rem;
 }
 
+
+/* Quiz-specific form styling — applies only to .quiz-form */
+.quiz-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 25px 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+/* კითხვის ტექსტი */
+.quiz-form p {
+    font-size: 1.2rem;
+    color: #212529;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* პასუხები */
+.quiz-form label {
+    display: block;
+    font-size: 1rem;
+    color: #495057;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.quiz-form input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.1);
+    vertical-align: middle;
+}
+
+/* ღილაკი */
+.quiz-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 26px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 6px rgba(0, 123, 255, 0.4);
+}
+
+.quiz-form button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+
+
+
 /* Responsive */
 @media (max-width: 768px) {
     .columned {
@@ -301,3 +362,4 @@ h2 {
         width: 80px; /* ოდნავ პატარა მობილურზე */
     }
 }
+

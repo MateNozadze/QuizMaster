@@ -16,7 +16,8 @@ import org.slf4j.LoggerFactory;
 @Controller
 public class QuizSetupController {
     private static final Logger logger = LoggerFactory.getLogger(QuizSetupController.class);
-    private final QuizService quizService;
+
+     private final QuizService quizService;
     private final QuizConfig quizConfig;
 
     @Autowired
